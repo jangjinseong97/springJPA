@@ -29,4 +29,7 @@ public class StudentService {
         }
         return res2;
     }
+    List<StudentDto> getListIdToString(Pageable pageable) {
+        return studentRepository.findList(pageable);
+    }
 }

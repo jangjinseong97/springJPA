@@ -2,6 +2,7 @@ package org.example.springjpa.student;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.springjpa.student.model.StudentDto;
 import org.example.springjpa.student.model.StudentRes;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +22,10 @@ public class StudentController {
     @GetMapping
     List<StudentRes> getList(@RequestParam int page, @RequestParam int size) {
         return studentService.getList(PageRequest.of(page, size));
+    }
+
+    @GetMapping("to_string")
+    List<StudentDto> getListIdString(@RequestParam int page, @RequestParam int size) {
+        return studentService.getListIdToString(PageRequest.of(page, size));
     }
 }
