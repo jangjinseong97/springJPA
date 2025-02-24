@@ -2,6 +2,7 @@ package org.example.springjpa.entity;
 
 import io.hypersistence.utils.hibernate.id.Tsid;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -19,6 +20,8 @@ public class School extends CreatedAt{
     private String name;
 
     @Column(nullable = false)
+    @Convert(converter = SchoolTypeCode.CodeConverter.class)
+    // 컨버터 작업 후 추가
     private SchoolTypeCode schoolTypeCode;
 
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.beans.Transient;
 
@@ -29,5 +30,20 @@ class StudentTest {
             studentRepository.save(student);
         }
         studentRepository.flush();
+    }
+
+    @Test
+    @Rollback(false)
+    public void insertStudent(){
+        School school = School.builder()
+                .schoolId(680592768985023227L)
+                .build();
+
+        Student student = Student.builder()
+                .gradeTypeCode(StudentGradeType.GRADE_2)
+                .name("testIS2")
+                .school(school)
+                .build();
+        studentRepository.save(student);
     }
 }
